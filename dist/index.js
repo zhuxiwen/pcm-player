@@ -1,8 +1,8 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global = global || self, global.PCMPlayer = factory());
-}(this, (function () { 'use strict';
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.PCMPlayer = factory());
+})(this, (function () { 'use strict';
 
   class PCMPlayer {
     constructor(option) {
@@ -20,7 +20,7 @@
 
       this.option = Object.assign({}, defaultOption, option); // 实例最终配置参数
       this.samples = new Float32Array(); // 样本存放区域
-      this.interval = setInterval(this.flush.bind(this), this.option.flushTime);
+      this.interval = this.option.flushTime ? setInterval(this.flush.bind(this), this.option.flushTime) : undefined;
       this.convertValue = this.getConvertValue();
       this.typedArray = this.getTypedArray();
       this.initAudioContext();
@@ -196,4 +196,4 @@
 
   return PCMPlayer;
 
-})));
+}));

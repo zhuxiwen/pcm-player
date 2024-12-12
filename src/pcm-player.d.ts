@@ -45,7 +45,7 @@ declare module 'pcm-player' {
 
     private getFormattedValue(data: ArrayBuffer | keyof typedArrays): Float32Array
 
-    private flush(): void
+    flush(): void
 
     feed(data: ArrayBuffer | keyof typedArrays): void
 

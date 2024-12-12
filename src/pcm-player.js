@@ -14,7 +14,7 @@ class PCMPlayer {
 
     this.option = Object.assign({}, defaultOption, option) // 实例最终配置参数
     this.samples = new Float32Array() // 样本存放区域
-    this.interval = setInterval(this.flush.bind(this), this.option.flushTime)
+    this.interval = this.option.flushTime ? setInterval(this.flush.bind(this), this.option.flushTime) : undefined
     this.convertValue = this.getConvertValue()
     this.typedArray = this.getTypedArray()
     this.initAudioContext()
